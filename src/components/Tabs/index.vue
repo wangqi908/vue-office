@@ -2,6 +2,7 @@
   <div class="tab-comp">
     <router-link to="/home" exact>Home</router-link>
     <router-link to="/excel-read" exact>excel-read</router-link>
+    <router-link to="/excel-export" exact>excel-export</router-link>
   </div>
 </template>
 

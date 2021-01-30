@@ -19,6 +19,14 @@ const routes = [
         name: 'excel-read',
         component: () =>
           import(/* webpackChunkName: "excel-read" */ '../views/ExcelRead.vue')
+      },
+      {
+        path: 'excel-export',
+        name: 'excel-export',
+        component: () =>
+          import(
+            /* webpackChunkName: "excel-export" */ '../views/ExcelExport.vue'
+          )
       }
     ]
   }

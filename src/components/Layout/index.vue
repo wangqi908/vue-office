@@ -8,13 +8,14 @@
       https://www.reddit.com/r/vuejs/comments/j3tnws/vue3_router_transitions/
       https://www.youtube.com/watch?t=1190&v=A5cVyjrKx_Q
     -->
-    <div class="content-router">
-      <router-view v-slot="slotProps">
-        <transition name="fade" mode="out-in">
+
+    <router-view v-slot="slotProps">
+      <transition name="fade" mode="out-in">
+        <div class="content-router">
           <component :is="slotProps.Component"></component>
-        </transition>
-      </router-view>
-    </div>
+        </div>
+      </transition>
+    </router-view>
   </div>
 </template>
 
