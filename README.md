@@ -4,6 +4,11 @@
 ```
 npm i -S file-saver xlsx xlsx-style
 ```
+
+## 生成docx
+```
+npm i -S docxtemplater docxtemplater-image-module-free pizzip
+```
 ## Project setup
 ```
 npm install

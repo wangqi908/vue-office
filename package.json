@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "docxtemplater": "^3.19.9",
+    "docxtemplater-image-module-free": "^1.1.1",
     "file-saver": "^2.0.5",
+    "pizzip": "^3.0.6",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "xlsx": "^0.16.9",

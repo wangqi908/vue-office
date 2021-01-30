@@ -27,6 +27,14 @@ const routes = [
           import(
             /* webpackChunkName: "excel-export" */ '../views/ExcelExport.vue'
           )
+      },
+      {
+        path: 'docx-export',
+        name: 'docx-export',
+        component: () =>
+          import(
+            /* webpackChunkName: "docx-export" */ '../views/DocxExport.vue'
+          )
       }
     ]
   }
