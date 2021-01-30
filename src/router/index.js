@@ -6,7 +6,7 @@ const routes = [
     name: 'layout',
     redirect: '/home',
     component: () =>
-      import(/* webpackChunkName: "layout" */ '@/components/Layout'),
+      import(/* webpackChunkName: "layout" */ '@/components/layout'),
     children: [
       {
         path: 'home',
@@ -15,10 +15,10 @@ const routes = [
           import(/* webpackChunkName: "about" */ '../views/Home.vue')
       },
       {
-        path: 'about',
-        name: 'About',
+        path: 'excel-read',
+        name: 'excel-read',
         component: () =>
-          import(/* webpackChunkName: "about" */ '../views/About.vue')
+          import(/* webpackChunkName: "excel-read" */ '../views/ExcelRead.vue')
       }
     ]
   }

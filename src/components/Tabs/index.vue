@@ -1,7 +1,7 @@
 <template>
   <div class="tab-comp">
     <router-link to="/home" exact>Home</router-link>
-    <router-link to="/about" exact>About</router-link>
+    <router-link to="/excel-read" exact>excel-read</router-link>
   </div>
 </template>
 
@@ -20,6 +20,8 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: auto;
+  width: 100px;
+  flex-shrink: 0;
 
   .router-link-exact-active {
     background: skyblue;

@@ -1,5 +1,9 @@
 # vue-office
 
+## 生成和读取excel
+```
+npm i -S file-saver xlsx xlsx-style
+```
 ## Project setup
 ```
 npm install
