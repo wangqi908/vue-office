@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-link to="/pdf/pdf1" exact>pdf1</router-link>
-    <router-link to="/pdf/pdf2" exact>pdf2</router-link>
+    <router-link to="/pdf/export-by-element" exact>导出指定区域</router-link>
+    <router-link to="/pdf/export-by-url" exact>导出指定URL</router-link>
     <hr />
     <router-view v-slot="slotProps">
       <transition name="fade" mode="out-in">

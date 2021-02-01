@@ -48,19 +48,23 @@ const routes = [
         path: 'pdf',
         name: 'pdf',
         component: () => import(/* webpackChunkName: "pdf" */ '../views/pdf'),
-        redirect: '/pdf/pdf1',
+        redirect: '/pdf/export-by-element',
         children: [
           {
-            path: 'pdf1',
-            name: 'pdf1',
+            path: 'export-by-element',
+            name: 'exportByElement',
             component: () =>
-              import(/* webpackChunkName: "pdf1" */ '../views/pdf/pdf1.vue')
+              import(
+                /* webpackChunkName: "pdf-export-by-element" */ '../views/pdf/exportByElement.vue'
+              )
           },
           {
-            path: 'pdf2',
-            name: 'pdf2',
+            path: 'export-by-url',
+            name: 'exportByUrl',
             component: () =>
-              import(/* webpackChunkName: "pdf2" */ '../views/pdf/pdf2.vue')
+              import(
+                /* webpackChunkName: "pdf-export-by-url" */ '../views/pdf/exportByUrl.vue'
+              )
           }
         ]
       }
