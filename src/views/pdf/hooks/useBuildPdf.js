@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { pdfReq } from '@/api'
 
 // 循环list
 function getListHtml (list) {
@@ -81,15 +81,7 @@ export function getStr (targetElement) {
 
 // 请求获取生成pdf
 export async function getPdfUrl (data) {
-  const res = await axios({
-    method: 'post',
-    url: 'http://localhost:3000/pdf',
-    responseType: 'arraybuffer',
-    headers: {
-      Accept: 'application/pdf'
-    },
-    data
-  })
+  const res = await pdfReq(data)
   const blob = new Blob([res.data], { type: 'application/pdf' })
   return URL.createObjectURL(blob)
 }
