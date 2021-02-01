@@ -1,16 +1,14 @@
 <template>
   <div>
     <input type="file" @change="inpChange" />
+    <div>{{ list }}</div>
   </div>
-
-  <div>{{ list }}</div>
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue'
 import { readExcel } from '@/utils/excel'
 export default {
-  name: 'ExcelRead',
   setup () {
     const state = reactive({
       list: []

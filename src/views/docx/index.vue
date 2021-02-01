@@ -1,11 +1,12 @@
 <template>
-  <button @click="down">下载</button>
+  <div>
+    <button @click="down">下载</button>
+  </div>
 </template>
 
 <script>
 import { docxExport } from '@/utils/docx'
 export default {
-  name: 'App',
   setup () {
     function down () {
       const data = {
@@ -13,22 +14,22 @@ export default {
         lastName: 'Doe',
         phone: '0652455478',
         description: 'New Website',
-        avatar: require('../../static/avatar.jpg'),
+        avatar: require('@/assets/img/avatar.jpg'),
         list: [
           {
             name: '张三',
             hobby: '抽烟',
-            image: require('../../static/aa.jpg')
+            image: require('@/assets/img/aa.jpg')
           },
           {
             name: '李四',
             hobby: '喝酒',
-            image: require('../../static/bb.jpg')
+            image: require('@/assets/img/bb.jpg')
           },
           {
             name: '王五',
             hobby: '烫头',
-            image: require('../../static/cc.jpg')
+            image: require('@/assets/img/cc.jpg')
           }
         ],
         /*
@@ -61,5 +62,3 @@ export default {
   }
 }
 </script>
-
-<style></style>

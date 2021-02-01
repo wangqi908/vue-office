@@ -12,29 +12,57 @@ const routes = [
         path: 'home',
         name: 'Home',
         component: () =>
-          import(/* webpackChunkName: "about" */ '../views/Home.vue')
+          import(/* webpackChunkName: "home" */ '../views/Home.vue')
       },
       {
-        path: 'excel-read',
-        name: 'excel-read',
+        path: 'excel',
+        name: 'excel',
         component: () =>
-          import(/* webpackChunkName: "excel-read" */ '../views/ExcelRead.vue')
+          import(/* webpackChunkName: "excel" */ '../views/excel'),
+        redirect: '/excel/export',
+        children: [
+          {
+            path: 'export',
+            name: 'export',
+            component: () =>
+              import(
+                /* webpackChunkName: "excel-export" */ '../views/excel/export.vue'
+              )
+          },
+          {
+            path: 'read',
+            name: 'read',
+            component: () =>
+              import(
+                /* webpackChunkName: "excel-read" */ '../views/excel/read.vue'
+              )
+          }
+        ]
       },
       {
-        path: 'excel-export',
-        name: 'excel-export',
-        component: () =>
-          import(
-            /* webpackChunkName: "excel-export" */ '../views/ExcelExport.vue'
-          )
+        path: 'docx',
+        name: 'docx',
+        component: () => import(/* webpackChunkName: "docx" */ '../views/docx')
       },
       {
-        path: 'docx-export',
-        name: 'docx-export',
-        component: () =>
-          import(
-            /* webpackChunkName: "docx-export" */ '../views/DocxExport.vue'
-          )
+        path: 'pdf',
+        name: 'pdf',
+        component: () => import(/* webpackChunkName: "pdf" */ '../views/pdf'),
+        redirect: '/pdf/pdf1',
+        children: [
+          {
+            path: 'pdf1',
+            name: 'pdf1',
+            component: () =>
+              import(/* webpackChunkName: "pdf1" */ '../views/pdf/pdf1.vue')
+          },
+          {
+            path: 'pdf2',
+            name: 'pdf2',
+            component: () =>
+              import(/* webpackChunkName: "pdf2" */ '../views/pdf/pdf2.vue')
+          }
+        ]
       }
     ]
   }

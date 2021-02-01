@@ -1,12 +1,13 @@
 <template>
-  <button @click="exportExcel">导出</button>
-  <button @click="exportExcelWithStyle">导出(带样式)</button>
+  <div>
+    <button @click="exportExcel">导出</button>
+    <button @click="exportExcelWithStyle">导出(带样式)</button>
+  </div>
 </template>
 
 <script>
 import { useExportExcel, useExportExcelWithStyle } from '@/hooks'
 export default {
-  name: 'ExcelExport',
   setup () {
     const { list } = require('@/assets/page.json')
     function exportExcel () {
