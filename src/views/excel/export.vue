@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { useExportExcel, useExportExcelWithStyle } from '@/hooks'
+import { useExportExcel, useExportExcelWithStyle } from './hooks'
 export default {
   setup () {
     const { list } = require('@/assets/page.json')

@@ -1,19 +1,26 @@
 <template>
   <div class="home">
-    <button @click="addPdf">生成PDF</button>
+    <button @click="buildPdf">生成PDF</button>
     <div class="pdf-box">
       <div v-html="htmlStr" class="pdf-content" ref="pdfContent"></div>
+    </div>
+    <div>
+      <object
+        type="application/pdf"
+        :data="pdfUrl"
+        width="100%"
+        height="800px"
+      ></object>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { reactive, toRefs, onMounted } from 'vue'
+import { setHtml, getStr, getPdfUrl } from './hooks/useBuildPdf'
 export default {
-  name: 'Home',
-  data () {
-    return {
-      htmlStr: '',
+  setup () {
+    const state = reactive({
       info: {
         code: '111',
         companyName: '上海海骄',
@@ -37,95 +44,25 @@ export default {
             id: 3
           }
         ]
-      }
+      },
+      pdfContent: null, // pdfContent dom元素
+      htmlStr: '', // html结构字符串
+      pdfUrl: '' // pdf地址
+    })
+
+    async function buildPdf () {
+      const { htmlStr, styleStr } = getStr(state.pdfContent)
+      state.pdfUrl = await getPdfUrl({ htmlStr, styleStr })
     }
-  },
-  methods: {
-    getSelfPayHtml () {
-      const { code, companyName, list } = this.info
-      const html = `
-          <div class="pdf-page">
-            <div class="info-box">
-              <div>
-                订单号
-              ${code}
-              </div>
-              <div>
-                公司
-              ${companyName}
-              </div>
-              <div>
-                HTML TO PDF 
-              </div>
-            </div>
-            <div class="img-list">
-              ${this.getListHtml(list)}
-            </div>
-          </div>
-        `
-      const style = `
-        .info-box {
-            border: 2px solid rgb(207, 59, 59);
-            padding: 20px;
-            // page-break-after: always;
-          }
-          .img-box {
-            border: 2px solid rgb(110, 33, 211);
-            page-break-inside: avoid;
-            background-color: #fff;
-            margin: 10px;
-            margin-bottom: 50px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          }
-          .img-box .title {
-            margin-bottom: 10px;
-            font-size: 14px;
-          }
-          .img-box .img {
-            width: 400px;
-            height: auto;
-          }
-        `
-      return `<html><head><style>${style}</style></head><body>${html}</body></html>`
-    },
 
-    addPdf () {
-      const targetElement = this.$refs.pdfContent
+    onMounted(() => {
+      state.htmlStr = setHtml(state.info)
+    })
 
-      const htmlStr = targetElement.getElementsByClassName('pdf-page')[0]
-        .innerHTML
-      const styleStr = targetElement.getElementsByTagName('style')[0].innerHTML
-      console.log(htmlStr, styleStr)
-      axios
-        .post('http://localhost:3000/pdf', {
-          styleStr,
-          htmlStr
-        })
-        .then(response => {
-          console.log(response)
-        })
-    },
-    getListHtml (list) {
-      const htmlArr = list.map(item => {
-        return `
-            <div class="img-box">
-                <div class="title">
-                   ${item.name}
-                </div>
-                <img class="img" src="${item.url}" alt="" />
-              </div>
-          `
-      })
-
-      return htmlArr.join('')
+    return {
+      ...toRefs(state),
+      buildPdf
     }
-  },
-  mounted () {
-    this.htmlStr = this.getSelfPayHtml()
   }
 }
 </script>

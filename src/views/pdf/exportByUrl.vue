@@ -1,58 +1,39 @@
 <template>
   <div class="home">
-    <input v-model="url" />
-    <button @click="addPdf">打印指定页面</button>
+    <input v-model.trim="url" />
+    <button @click="buildPdf">打印指定页面</button>
+    <div>
+      <object
+        type="application/pdf"
+        :data="pdfUrl"
+        width="100%"
+        height="800px"
+      ></object>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { reactive, toRefs } from 'vue'
+import { getPdfUrl } from './hooks/useBuildPdf'
 export default {
-  name: 'Home',
-  data () {
-    return {
-      url: ''
+  setup () {
+    const state = reactive({
+      url: '',
+      pdfUrl: ''
+    })
+
+    async function buildPdf () {
+      if (state.url === '') {
+        return
+      }
+      state.pdfUrl = await getPdfUrl({ url: state.url })
     }
-  },
-  methods: {
-    addPdf () {
-      axios
-        .post('http://localhost:3000/pdf', {
-          url: this.url
-        })
-        .then(response => {
-          console.log(response)
-        })
+
+    return {
+      ...toRefs(state),
+      buildPdf
     }
   }
 }
 </script>
-
-<style>
-.info-box {
-  border: 2px solid rgb(207, 59, 59);
-  padding: 20px;
-  /* page-break-after: always; */
-}
-
-.img-box {
-  border: 2px solid rgb(110, 33, 211);
-  page-break-inside: avoid;
-  background-color: #fff;
-  margin: 10px;
-  margin-bottom: 50px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.title {
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-.img {
-  width: 400px;
-  height: auto;
-}
-</style>
