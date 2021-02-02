@@ -69,6 +69,11 @@ const routes = [
         ]
       }
     ]
+  },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: () => import(/* webpackChunkName: "demo" */ '../views/demo')
   }
 ]
 
