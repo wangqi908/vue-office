@@ -1,33 +1,47 @@
 <template>
-  <div>
-    <h3>Tooltips with Vue 3 Teleport</h3>
-    <h4>{{ show }}</h4>
-    <button @click="show = true">
-      Open full screen modal!
-    </button>
-    <div>
-      <Modal v-model:show="show" title="标题">
-        <p>Here's some contact info</p>
-        <!-- <template v-slot:content>
-          <p>Here's some contact info</p>
-        </template> -->
-      </Modal>
-    </div>
-  </div>
+  <!-- <div class="loading"></div> -->
+  <button @click="test">test</button>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, getCurrentInstance } from 'vue'
 export default {
   setup () {
+    const instance = getCurrentInstance()
     const state = reactive({
       show: false
     })
+    function test () {
+      instance.proxy.$loading.show()
+
+      setTimeout(() => {
+        instance.proxy.$loading.hide()
+      }, 1000)
+    }
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      test
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.loading {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: rgb(137, 227, 243);
+  animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

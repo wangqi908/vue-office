@@ -15,9 +15,11 @@
 
 <script>
 import { reactive, toRefs } from 'vue'
+// import {  getCurrentInstance } from 'vue'
 import { getPdfUrl } from './hooks/useBuildPdf'
 export default {
   setup () {
+    // const instance = getCurrentInstance()
     const state = reactive({
       url: '',
       pdfUrl: ''
@@ -27,7 +29,9 @@ export default {
       if (state.url === '') {
         return
       }
+      // instance.proxy.$loading.show()
       state.pdfUrl = await getPdfUrl({ url: state.url })
+      // instance.proxy.$loading.hide()
     }
 
     return {
