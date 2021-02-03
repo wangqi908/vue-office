@@ -10,60 +10,57 @@ const routes = [
     children: [
       {
         path: 'home',
-        name: 'Home',
-        component: () =>
-          import(/* webpackChunkName: "home" */ '../views/Home.vue')
-      },
-      {
-        path: 'excel',
-        name: 'excel',
-        component: () =>
-          import(/* webpackChunkName: "excel" */ '../views/excel'),
-        redirect: '/excel/export',
-        children: [
-          {
-            path: 'export',
-            name: 'export',
-            component: () =>
-              import(
-                /* webpackChunkName: "excel-export" */ '../views/excel/export.vue'
-              )
-          },
-          {
-            path: 'read',
-            name: 'read',
-            component: () =>
-              import(
-                /* webpackChunkName: "excel-read" */ '../views/excel/read.vue'
-              )
-          }
-        ]
+        name: 'home',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/home')
       },
       {
         path: 'docx',
         name: 'docx',
-        component: () => import(/* webpackChunkName: "docx" */ '../views/docx')
+        component: () => import(/* webpackChunkName: "docx" */ '@/views/docx')
+      },
+      {
+        path: 'excel',
+        name: 'excel',
+        redirect: '/excel/export',
+        component: () =>
+          import(/* webpackChunkName: "excel" */ '@/views/excel'),
+        children: [
+          {
+            path: 'export',
+            name: 'excel-export',
+            component: () =>
+              import(
+                /* webpackChunkName: "excel-export" */ '@/views/excel/export'
+              )
+          },
+          {
+            path: 'read',
+            name: 'excel-read',
+            component: () =>
+              import(/* webpackChunkName: "excel-read" */ '@/views/excel/read')
+          }
+        ]
       },
       {
         path: 'pdf',
         name: 'pdf',
-        component: () => import(/* webpackChunkName: "pdf" */ '../views/pdf'),
         redirect: '/pdf/export-by-element',
+        component: () => import(/* webpackChunkName: "pdf" */ '@/views/pdf'),
         children: [
           {
             path: 'export-by-element',
-            name: 'exportByElement',
+            name: 'pdf-export-by-element',
             component: () =>
               import(
-                /* webpackChunkName: "pdf-export-by-element" */ '../views/pdf/exportByElement.vue'
+                /* webpackChunkName: "pdf-export-by-element" */ '@/views/pdf/exportByElement'
               )
           },
           {
             path: 'export-by-url',
-            name: 'exportByUrl',
+            name: 'pdf-export-by-url',
             component: () =>
               import(
-                /* webpackChunkName: "pdf-export-by-url" */ '../views/pdf/exportByUrl.vue'
+                /* webpackChunkName: "pdf-export-by-url" */ '@/views/pdf/exportByUrl'
               )
           }
         ]
@@ -78,7 +75,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes
 })
 

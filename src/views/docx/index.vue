@@ -7,6 +7,7 @@
 <script>
 import { docxExport } from '@/utils/docx'
 export default {
+  name: 'docx',
   setup () {
     function down () {
       const data = {

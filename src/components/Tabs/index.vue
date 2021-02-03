@@ -1,9 +1,9 @@
 <template>
   <div class="tab-comp">
-    <router-link to="/home">Home</router-link>
-    <router-link to="/excel">EXCEL</router-link>
-    <router-link to="/docx">DOCX</router-link>
-    <router-link to="/pdf">PDF</router-link>
+    <router-link to="/home" exact>Home</router-link>
+    <router-link to="/docx">docx</router-link>
+    <router-link to="/excel">excel</router-link>
+    <router-link to="/pdf">pdf</router-link>
   </div>
 </template>
 
@@ -24,14 +24,5 @@ export default {
   overflow: auto;
   width: 100px;
   flex-shrink: 0;
-
-  .router-link-exact-active {
-    background: skyblue;
-    color: yellow;
-  }
-  .router-link-active {
-    background: skyblue;
-    color: yellow;
-  }
 }
 </style>

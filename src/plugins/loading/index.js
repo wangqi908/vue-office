@@ -1,6 +1,4 @@
-import { createApp } from 'vue'
-import LoadingComponent from './LoadingComponent.vue'
-
+import instance from '@/plugins/loading/instance'
 /*
   import { getCurrentInstance } from 'vue'
   setup () {
@@ -19,10 +17,6 @@ import LoadingComponent from './LoadingComponent.vue'
 
 export default {
   install: app => {
-    const instance = createApp(LoadingComponent).mount(
-      document.createElement('div')
-    )
-    document.body.appendChild(instance.$el)
     const loading = {
       show () {
         instance.show()

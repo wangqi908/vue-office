@@ -9,6 +9,7 @@
 import { reactive, toRefs } from 'vue'
 import { readExcel } from '@/utils/excel'
 export default {
+  name: 'excel-read',
   setup () {
     const state = reactive({
       list: []

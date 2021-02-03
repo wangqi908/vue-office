@@ -19,6 +19,7 @@
 import { reactive, toRefs, onMounted } from 'vue'
 import { setHtml, getStr, getPdfUrl } from './hooks/useBuildPdf'
 export default {
+  name: 'pdf-export-by-element',
   setup () {
     const state = reactive({
       info: {
@@ -51,8 +52,12 @@ export default {
     })
 
     async function buildPdf () {
-      const { htmlStr, styleStr } = getStr(state.pdfContent)
-      state.pdfUrl = await getPdfUrl({ htmlStr, styleStr })
+      try {
+        const { htmlStr, styleStr } = getStr(state.pdfContent)
+        state.pdfUrl = await getPdfUrl({ htmlStr, styleStr })
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     onMounted(() => {

@@ -8,6 +8,7 @@
 <script>
 import { useExportExcel, useExportExcelWithStyle } from './hooks'
 export default {
+  name: 'excel-export',
   setup () {
     const { list } = require('@/assets/page.json')
     function exportExcel () {

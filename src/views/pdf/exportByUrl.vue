@@ -15,11 +15,11 @@
 
 <script>
 import { reactive, toRefs } from 'vue'
-// import {  getCurrentInstance } from 'vue'
+
 import { getPdfUrl } from './hooks/useBuildPdf'
 export default {
+  name: 'pdf-export-by-url',
   setup () {
-    // const instance = getCurrentInstance()
     const state = reactive({
       url: '',
       pdfUrl: ''
@@ -29,9 +29,11 @@ export default {
       if (state.url === '') {
         return
       }
-      // instance.proxy.$loading.show()
-      state.pdfUrl = await getPdfUrl({ url: state.url })
-      // instance.proxy.$loading.hide()
+      try {
+        state.pdfUrl = await getPdfUrl({ url: state.url })
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     return {
