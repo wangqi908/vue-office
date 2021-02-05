@@ -55,7 +55,11 @@ export default {
           }
         }
       }
-      docxExport(obj)
+      try {
+        docxExport(obj)
+      } catch (error) {
+        console.log(error)
+      }
     }
     return {
       down

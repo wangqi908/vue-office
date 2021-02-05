@@ -21,5 +21,9 @@ export default function useExportExcel (data) {
     autoWidth: true,
     filename: '清单'
   }
-  exportJsonToExcel(params)
+  try {
+    exportJsonToExcel(params)
+  } catch (error) {
+    console.log(error)
+  }
 }

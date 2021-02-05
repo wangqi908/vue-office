@@ -138,5 +138,9 @@ export default function useExportExcelWithStyle (data) {
     }
   }
   params.wb = wb
-  exportJsonToExcel(params)
+  try {
+    exportJsonToExcel(params)
+  } catch (error) {
+    console.log(error)
+  }
 }

@@ -67,9 +67,7 @@ export function docxExport ({
     PizZipUtils.getBinaryContent(fileUrl, (error, content) => {
       if (error) {
         reject(error)
-        throw error
       }
-
       const opts = {}
       opts.centered = false // Set to true to always center images
 
