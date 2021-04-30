@@ -1,15 +1,12 @@
 <template>
   <div class="demo">
-    <button @click="add">Add</button>
-
-    <transition name="slid">
-      <div class="box">aa</div>
-    </transition>
+    <button @click="msg">msg</button>
+    <button @click="loading">loading</button>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { Message } from '@/plugins'
 export default {
   data () {
     return {
@@ -17,15 +14,14 @@ export default {
     }
   },
   methods: {
-    add () {
-      console.log(11)
-      axios('http://localhost:3000/').then(res => {
-        console.log(res)
-      })
-      axios.post('http://localhost:3000/post').then(res => {
-        console.log(res)
-      })
-      // this.items.splice(0, 0, '信息' + this.items.length)
+    msg () {
+      Message('aaa')
+    },
+    loading () {
+      this.$loading.show()
+      setTimeout(() => {
+        this.$loading.hide()
+      }, 1000)
     }
   },
   watch: {}
